@@ -1,37 +1,10 @@
 import "./styles.scss"
+import "../../themes.scss"
 import {FaSearch} from "react-icons/fa"
-import weatherApi from "../../Services/weatherApi"
-import { useEffect, useState } from 'react'
 
-
-export default function Weather(){
-    const [input, setInput] = useState('')
-    const [weather, setWeather] = useState(false)
-    const [city, setCity] = useState('')
-
-    useEffect(()=>{
-        async function getWeatherByCity(){
-            try{
-                const {data} = await weatherApi.get(`weather?appid=2f246fbc49ab4d482f13847905a1b38e&q=${city}`)
-                setWeather(data)
-            }catch(error){
-                console.error("Erro ao buscar dados", error)
-            }
-        }
-        getWeatherByCity()        
-    },[city])
-
-    function handleSubmit(e){
-        e.preventDefault()
-        setCity(input)
-    }
-
-    if (weather !== false){
-        var temperatura = Math.round(weather.main.temp - 273.15)
-    }
-
+export default function Weather({handleSubmit, input, setInput, weather, temperatura, type}){
     return(
-        <div onSubmit={(e)=>handleSubmit(e)} className="weather-container">
+        <div onSubmit={(e)=>handleSubmit(e)} className={`weather-container ${type}`}>
             <form action="" className="form" >
                 <input 
                 type="text" 
