@@ -17,7 +17,7 @@ export default function Home() {
     useEffect(() => {
         async function getWeatherByCity() {
             try {
-                const { data } = await weatherApi.get(`weather?appid=2f246fbc49ab4d482f13847905a1b38e&q=${city}`)
+                const { data } = await weatherApi.get(`weather?appid=${process.env.REACT_APP_IDAPP}&q=${city}`)
                 setWeather(data)
                 const temperatura = Math.round(data.main.temp - 273.15)
                 console.log(data)
