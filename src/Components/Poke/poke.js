@@ -1,11 +1,12 @@
 import "./styles.scss"
 import "../../themes.scss"
+import { FaRegQuestionCircle } from "react-icons/fa"
 
 export default function Poke({search, type}){
     
     return(
         <div className={`pokemon-container ${type}`}>
-            {(search===false) ? "" :
+            {(search===false) ? <FaRegQuestionCircle/>:
             <>
                 <h1>{search.name}</h1>
                 <img src={search.image} alt=""/>

@@ -20,24 +20,29 @@ export default function Home() {
                 const { data } = await weatherApi.get(`weather?appid=2f246fbc49ab4d482f13847905a1b38e&q=${city}`)
                 setWeather(data)
                 const temperatura = Math.round(data.main.temp - 273.15)
-                console.log(temperatura)
-
-                if (temperatura < 5) {
-                    setType('ice')
-                } else if (temperatura >= 5 && temperatura < 10) {
-                    setType('water')
-                } else if (temperatura > 12 && temperatura < 15) {
-                    setType('grass')
-                } else if (temperatura > 15 && temperatura < 21) {
-                    setType('ground')
-                } else if (temperatura > 23 && temperatura < 27) {
-                    setType('bug')
-                } else if (temperatura > 27 && temperatura <= 33) {
-                    setType('rock')
-                } else if (temperatura > 33) {
-                    setType('fire')
-                } else {
-                    setType('normal')
+                console.log(data)
+                const wind = data.weather.map(wind=>wind.main)
+                console.log(wind)
+                if(wind[0] === "Rain"){
+                    setType('electric')
+                }else{
+                    if (temperatura < 5) {
+                        setType('ice')
+                    } else if (temperatura >= 5 && temperatura < 10) {
+                        setType('water')
+                    } else if (temperatura > 12 && temperatura < 15) {
+                        setType('grass')
+                    } else if (temperatura > 15 && temperatura < 21) {
+                        setType('ground')
+                    } else if (temperatura > 23 && temperatura < 27) {
+                        setType('bug')
+                    } else if (temperatura > 27 && temperatura <= 33) {
+                        setType('rock')
+                    } else if (temperatura > 33) {
+                        setType('fire')
+                    } else {
+                        setType('normal')
+                    }
                 }
             } catch (error) {
                 console.error("Erro ao buscar dados", error)
