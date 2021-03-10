@@ -20,9 +20,7 @@ export default function Home() {
                 const { data } = await weatherApi.get(`weather?appid=${process.env.REACT_APP_IDAPP}&q=${city}`)
                 setWeather(data)
                 const temperatura = Math.round(data.main.temp - 273.15)
-                console.log(data)
                 const wind = data.weather.map(wind=>wind.main)
-                console.log(wind)
                 if(wind[0] === "Rain"){
                     setType('electric')
                 }else{
@@ -56,9 +54,8 @@ export default function Home() {
             try {
                 const { data } = await pokeApi.get(`type/${type}`)
                 const dataPoke = data.pokemon
-                const random = Math.floor(Math.random() * dataPoke.length) + 1
+                const random = Math.floor(Math.random() * dataPoke.length) + 1 
                 const poke = dataPoke[random]
-                console.log(poke)
                 setUrl(poke.pokemon.url)
             } catch (error) {
                 console.error("Erro ao buscar dados", error)

@@ -11,7 +11,7 @@ export default function Poke({search, type}){
                 <h1>{search.name}</h1>
                 <img src={search.image} alt=""/>
                 {search.type.map((type => (
-                    <h1>{type.type.name}</h1>
+                    <h1 key={type.type.name}>{type.type.name}</h1>
                 )))}
             </>
                 }
