@@ -12,3 +12,13 @@
         width: 300px;
     }
 }
+
+@media (max-width: 1200px){
+    .pokemon-container{
+        width: 100%;
+        
+        img{
+            width: 150px;
+        }
+    }
+}
